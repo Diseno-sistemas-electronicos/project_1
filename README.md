@@ -24,3 +24,12 @@ meson build
 ninja -C build
 ```
 And then run the executables inside the build folder.
+
+## Common Errors
+
+### undefined reference to `sc_main'
+The error
+```
+undefined reference to `sc_main'
+```
+means that every test bench (tb) must have a starting point called sc_main. The main function.
