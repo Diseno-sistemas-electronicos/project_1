@@ -3,7 +3,7 @@
 
 // https://forums.accellera.org/topic/24-systemc-230-with-main/
 int sc_main (int argc, char* argv[]) {
-  int data; 
+  int data;
   
   ram mem("MEM", 1024);
             
