@@ -8,11 +8,11 @@ sudo pip3 install meson
 This will install System C 2.3.4.
 ```
 git clone https://github.com/accellera-official/systemc
-git checkout release
 cd systemc
+git checkout release
+autoreconf
 mkdir build && cd build
 export CXX=g++
-../autoreconf
 ../configure --with-unix-layout --prefix=/usr/local/ --enable-debug
 make -j$(nproc)
 sudo make install
