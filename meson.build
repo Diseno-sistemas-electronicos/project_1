@@ -9,3 +9,4 @@ deps = [systemc_dep, math_dep]
 
 subdir('memory')
 subdir('adc')
+subdir('uart')

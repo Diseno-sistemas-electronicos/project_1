@@ -1,19 +1,19 @@
 # Headers
-mem_inc = []
+mem_lt_inc = []
 
 # Source Code
-mem_sources = [
+mem_lt_sources = [
     'memory.cpp'
 ]
 
 # Shared Library
-memlib = shared_library ('memlib',
-                         mem_sources,
-                         include_directories : mem_inc,
+memltlib = shared_library ('memlib',
+                         mem_lt_sources,
+                         include_directories : mem_lt_inc,
                          dependencies : deps,
                          install : false)
 
 testexe = executable('memlt', 'memory_tb.cpp',
-                     include_directories : mem_inc,
-                     link_with : memlib,
+                     include_directories : mem_lt_inc,
+                     link_with : memltlib,
                      dependencies : deps)
