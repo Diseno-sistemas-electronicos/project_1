@@ -1,19 +1,19 @@
 # Headers
-adc_inc = []
+adc_at_inc = []
 
 # Source Code
-adc_sources = [
+adc_at_sources = [
     'adc.cpp'
 ]
 
 # Shared Library
-adclib = shared_library ('adclib',
-                         adc_sources,
-                         include_directories : adc_inc,
+adcatlib = shared_library ('adclib',
+                         adc_at_sources,
+                         include_directories : adc_at_inc,
                          dependencies : deps,
                          install : false)
 
-testexe = executable('adcpv', 'adc_tb.cpp',
-                     include_directories : adc_inc,
-                     link_with : adclib,
+testexe = executable('adcat', 'adc_tb.cpp',
+                     include_directories : adc_at_inc,
+                     link_with : adcatlib,
                      dependencies : deps)

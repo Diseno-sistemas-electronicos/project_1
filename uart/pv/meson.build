@@ -9,7 +9,7 @@ uart_pv_sources = [
 # Shared Library
 uart_pv_lib = shared_library ('uartpvlib',
                          uart_pv_sources,
-                         include_directories : adc_inc,
+                         include_directories : adc_pv_inc,
                          dependencies : deps,
                          install : false)
 
