@@ -2,14 +2,18 @@
 #include "systemc.h"
 
 #include <unistd.h>
+#include <string>
 
 SC_MODULE (uart) {
     
   //-----------Internal variables-------------------
-	int * mem;
   int tx_port;
 	int rx_port;
+  int tx_buffer_size;
   int baudrate;
+
+  std::string tx_data;
+  std::string rx_data;
 
   // Constructor for memory
   //SC_CTOR(uart) {
@@ -18,15 +22,12 @@ SC_MODULE (uart) {
   } // End of Constructor
 
    //------------Code Starts Here-------------------------
-  void write(int address, int data) {
-    // sleep(1); //will not move time stamp either
-    mem [address] = data;
+  void write(std::string data) {
+    this->tx_data = data;
   }  
   
-  int read(int address) {
-    return mem [address];
+  std::string read() {
+    return this->rx_data;
   }
-  
-
   
 }; // End of UART Module
