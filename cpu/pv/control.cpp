@@ -15,8 +15,8 @@ SC_MODULE(control) {
 		//-- In --//
 		sc_in_clk clock;
 		sc_in<sc_uint<4> > opcode;	// OPCODE
-		sc_in<sc_uint<8> > of1;		// Operando fonte 1
-		sc_in<sc_uint<8> > of2;		// Operando fonte 2
+		sc_in<sc_uint<8> > of1;		// Operando Fuente 1
+		sc_in<sc_uint<8> > of2;		// Operando Fuente 2
 		sc_in<sc_uint<9> > opd;		// Operando destino
 		sc_in<bool> N;
 		sc_in<bool> Z;

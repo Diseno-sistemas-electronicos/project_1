@@ -1,9 +1,3 @@
-//------------------------------------------------------------------
-// Simple 4-bits adder
-// 
-// SystemC for VHDL engineers
-// (c)www.ht-lab.com
-//------------------------------------------------------------------
 #ifndef STIM_H
 #define STIM_H
 
@@ -50,6 +44,14 @@ SC_MODULE(stim) {
 		N.write(false);
 		Z.write(false);
 		wait();
+		
+		opcode.write("0b0001");
+		of1.write("0b00000001");
+		of2.write("0b00000001");
+		opd.write("0b000000001");
+		N.write(false);
+		Z.write(false);
+		wait();		
 
 		sc_stop();							// End simulation
 	}
