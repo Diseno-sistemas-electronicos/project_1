@@ -49,9 +49,9 @@ SC_MODULE (uart) {
   /*
   * This function allows to read data from rx buffer 
   */
-  std::string readCommand(){
+  std::string readCommand(int size = BUFFER_SIZE){
     std::string command = "";
-    for(int i = 0 ; i < BUFFER_SIZE; i++){
+    for(int i = 0 ; i < size; i++){
       command = command + readByte();
     }
     return command;
