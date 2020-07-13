@@ -9,11 +9,11 @@
 SC_MODULE(instruction_register){
 
 	//-- Signals --//
-	sc_in<sc_uint<64>> instructionIn;
+	sc_in<sc_uint<64> > instructionIn;
 	sc_in<bool> enable;
 	sc_in<bool> write;
 	sc_in<bool> clock;
-	sc_out<sc_uint<64>> instructionOut;
+	sc_out<sc_uint<64> > instructionOut;
 
 	/* Write/read in/from the register.
 	 * * */

@@ -6,12 +6,12 @@
 SC_MODULE(ula) {
 
 	//-- Sinais --//
-	sc_out<sc_int<32>> saida;
+	sc_out<sc_int<32> > saida;
 	sc_out<bool> N;
 	sc_out<bool> Z;
-	sc_in<sc_int<32>> a;
-	sc_in<sc_int<32>> b;
-	sc_in<sc_uint<4>> operacao;
+	sc_in<sc_int<32> > a;
+	sc_in<sc_int<32> > b;
+	sc_in<sc_uint<4> > operacao;
 	sc_in<bool> reset; // reset Z e N
 
 	//-- Methods --//

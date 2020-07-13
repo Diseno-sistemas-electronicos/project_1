@@ -7,11 +7,11 @@
  **/
 SC_MODULE(multiplex3){
 	//-- Signal declarations --//
-	sc_in<sc_uint<2>> seletor; 		// Select an input
-	sc_in<sc_int<32>> saidaULA;		// ULA input
-	sc_in<sc_int<32>> dataDM;		// DM input
-	sc_in<sc_uint<8>> immediateData; 	// Immediate input
-	sc_out<sc_int<32>> saida;		// Out
+	sc_in<sc_uint<2> > seletor; 		// Select an input
+	sc_in<sc_int<32> > saidaULA;		// ULA input
+	sc_in<sc_int<32> > dataDM;		// DM input
+	sc_in<sc_uint<8> > immediateData; 	// Immediate input
+	sc_out<sc_int<32> > saida;		// Out
 
 	/* Method that selects the right input
 	 * according to the selector.

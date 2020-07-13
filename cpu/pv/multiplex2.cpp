@@ -7,10 +7,10 @@
  **/
 SC_MODULE(multiplex2){
 	//-- Signal declarations --//
-	sc_in<sc_uint<2>> seletor; 		// Select an input
-	sc_in<sc_uint<9>> opd;			// ULA input
-	sc_in<sc_uint<8>> of1;			// DM input
-	sc_out<sc_uint<9>> saida;		// Out
+	sc_in<sc_uint<2> > seletor; 		// Select an input
+	sc_in<sc_uint<9> > opd;			// ULA input
+	sc_in<sc_uint<8> > of1;			// DM input
+	sc_out<sc_uint<9> > saida;		// Out
 
 	/* Method that selects the right input
 	 * according to the selector.

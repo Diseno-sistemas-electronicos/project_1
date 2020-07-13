@@ -11,8 +11,8 @@ SC_MODULE(program_counter){
 	sc_in<bool> reset;
 	sc_in<bool> enable;
 	sc_in<bool> load;
-	sc_out<sc_uint<9>> counter_out;
-	sc_in<sc_uint<9>> counter_in;
+	sc_out<sc_uint<9> > counter_out;
+	sc_in<sc_uint<9> > counter_in;
 
 	//-- Local variables --//
 	sc_uint<8> count = 0;

@@ -10,9 +10,9 @@ SC_MODULE(register_base) {
 	sc_in<bool> clock;			// Clock
 	sc_in<bool> enable;			// Available to read/write
 	sc_in<bool> write;			// write if true; read if false
-	sc_in<sc_uint<8>> addressSource1;	// Addressing first operand
-	sc_in<sc_uint<8>> addressSource2;	// Addressing second operand 
-	sc_in<sc_uint<9>> addressDest;		// Addressing destination operand 
+	sc_in<sc_uint<8> > addressSource1;	// Addressing first operand
+	sc_in<sc_uint<8> > addressSource2;	// Addressing second operand 
+	sc_in<sc_uint<9> > addressDest;		// Addressing destination operand 
 	sc_in<TData> dataToWrite; 		// Data to be written
 	sc_out<TData> dataSource1; 		// Data for the first operand
 	sc_out<TData> dataSource2; 		// Data for the second operand

@@ -12,7 +12,7 @@ SC_MODULE(ram) {
 	sc_in<bool> clock;		// Clock
 	sc_in<bool> enable;		// Available to read/write
 	sc_in<bool> write;		// write if true; read if false
-	sc_in<sc_uint<9>> address;	// Addressing the memory for write/read
+	sc_in<sc_uint<9> > address;	// Addressing the memory for write/read
 	sc_in<TData> dataIn; 		// Data to be written/read
 	sc_out<TData> dataOut;
 

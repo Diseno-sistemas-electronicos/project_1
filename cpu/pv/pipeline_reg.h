@@ -9,14 +9,14 @@ SC_MODULE(pipeline_reg) {
 	sc_in<bool> clock;		// Clock
 	sc_in<bool> enable;		// Available to read/write
 	sc_in<bool> write;		// write if 1; read if 0
-	sc_in<sc_uint<4>> opcodeIn;	// OPCODE
-	sc_in<sc_uint<8>> of1In;	// Operando fonte 1
-	sc_in<sc_uint<8>> of2In;	// Operando fonte 2
-	sc_in<sc_uint<9>> odIn;		// Operando destino
-	sc_out<sc_uint<4>> opcodeOut;	// OPCODE
-	sc_out<sc_uint<8>> of1Out;	// Operando fonte 1
-	sc_out<sc_uint<8>> of2Out;	// Operando fonte 2
-	sc_out<sc_uint<9>> odOut;	// Operando destino
+	sc_in<sc_uint<4> > opcodeIn;	// OPCODE
+	sc_in<sc_uint<8> > of1In;	// Operando fonte 1
+	sc_in<sc_uint<8> > of2In;	// Operando fonte 2
+	sc_in<sc_uint<9> > odIn;		// Operando destino
+	sc_out<sc_uint<4> > opcodeOut;	// OPCODE
+	sc_out<sc_uint<8> > of1Out;	// Operando fonte 1
+	sc_out<sc_uint<8> > of2Out;	// Operando fonte 2
+	sc_out<sc_uint<9> > odOut;	// Operando destino
 
 	//-- Method --//
 	void pipeline_reg_routine();	// Performs RAM's behaviour

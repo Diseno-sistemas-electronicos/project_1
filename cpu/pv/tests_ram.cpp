@@ -5,13 +5,13 @@ int sc_main(int argn, char * argv[]) {
 
 	//const char * inputFile = "in.text";
 
-	std::vector<sc_int<32>> initRam;
+	std::vector<sc_int<32> > initRam;
 
 	ram<sc_int<32>,256> memRam("MEMRAM", initRam);
 
 	sc_signal<bool> clock, enable, write;
 	sc_signal<int> address;
-	sc_signal<sc_int<32>> data;	
+	sc_signal<sc_int<32> > data;	
 
 	memRam.clock(clock);
 	memRam.enable(enable);
