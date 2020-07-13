@@ -5,35 +5,33 @@
 int sc_main (int argc, char* argv[]) {
   int data;
   
-  uart uart_comp("MEM", 1024);
+  uart uart("uart");
             
   // Open VCD file
-  sc_trace_file *wf = sc_create_vcd_trace_file("memory");
+  sc_trace_file *wf = sc_create_vcd_trace_file("uart");
   wf->set_time_unit(1, SC_NS);
   
   // Dump the desired signals
   sc_trace(wf, data, "data");
   
-  sc_start();
+  sc_start(0,SC_NS);
   cout << "@" << sc_time_stamp()<< endl;
-  
-  printf("Writing in zero time\n");
-  printf("WR: addr = 0x10, data = 0xaced\n");
-  printf("WR: addr = 0x12, data = 0xbeef\n");
-  printf("WR: addr = 0x13, data = 0xdead\n");
-  printf("WR: addr = 0x14, data = 0x1234\n");
-  
-  // operation
 
-  cout << "@" << sc_time_stamp()<< endl;
-  
-  cout << "Reading in zero time" <<endl; 
-  // data = mem.rd(0x10);
-  
-  cout << "@" << sc_time_stamp()<< endl;  
+  cout << "Write start Command\n" << endl;
+  std::string START_COMMAND = "START";
+  uart.sendCommand(START_COMMAND);
 
-  cout << "@" << sc_time_stamp() <<" Terminating simulation\n" << endl;
-  sc_close_vcd_trace_file(wf);
-  return 0;// Terminate simulation
+  cout << "Simulating response\n" << endl;
+  uart.setRxData("OK");
 
+  cout << "Reading response\n" << endl;
+  std::string response = uart.readCommand(1);
+  cout << "Readed value " << response << endl;
+
+
+  return 0;
+
+  
  }
+
+
