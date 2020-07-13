@@ -8,16 +8,16 @@
 #include <fstream>
 #include <stdlib.h>
 
-#include "multiplex3.cpp"
-#include "multiplex2.cpp"
-#include "ula.h"
-#include "program_counter.cpp"
-#include "ram.h"
-#include "register_base.h"
-#include "decoder.cpp"
-#include "control.cpp"
-#include "pipeline_reg.h"
-#include "instruction_register.cpp"
+#include "multiplex3/multiplex3.cpp"
+#include "multiplex2/multiplex2.cpp"
+#include "ula/ula.h"
+#include "program_counter/program_counter.cpp"
+#include "ram/ram.h"
+#include "register_base/register_base.h"
+#include "decoder/decoder.cpp"
+#include "control/control.cpp"
+#include "pipeline_reg/pipeline_reg.h"
+#include "instruction_register/instruction_register.cpp"
 
 sc_uint<64> instStringToInt(const std::string & inst);
 
