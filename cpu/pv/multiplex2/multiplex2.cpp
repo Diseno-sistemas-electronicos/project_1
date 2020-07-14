@@ -15,7 +15,15 @@ SC_MODULE(multiplex2){
 	/* Method that selects the right input
 	 * according to the selector.
 	 * **/
-	void select();
+	void select(){
+		if (seletor.read() == 0) {
+			saida.write(opd.read());
+		} else if (seletor.read() == 1) {
+			int t = of1.read();
+			sc_uint<9> a = t;
+			saida.write(a);
+		}
+	}
 
 	/** 
 	 * Constructor
@@ -28,13 +36,4 @@ SC_MODULE(multiplex2){
 
 };
 
-void multiplex2::select() {
-	if (seletor.read() == 0) {
-		saida.write(opd.read());
-	} else if (seletor.read() == 1) {
-		int t = of1.read();
-		sc_uint<9> a = t;
-		saida.write(a);
-	}
-}
 
