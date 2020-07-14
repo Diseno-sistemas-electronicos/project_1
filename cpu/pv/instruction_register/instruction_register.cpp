@@ -17,7 +17,16 @@ SC_MODULE(instruction_register){
 
 	/* Write/read in/from the register.
 	 * * */
-	void mem();
+	void mem(){
+		if (enable.read() == 1) {
+			if (write.read() == 1) {
+				instruction = instructionIn.read();		
+				instructionOut.write(instruction);
+			} else if (write.read() == 0) {
+				instructionOut.write(instruction);
+				}
+			}
+		}
 
 	sc_uint<64> instruction;
 
@@ -32,14 +41,3 @@ SC_MODULE(instruction_register){
 	}
 
 };
-
-void instruction_register::mem() {
-	if (enable.read() == 1) {
-		if (write.read() == 1) {
-			instruction = instructionIn.read();		
-			instructionOut.write(instruction);
-		} else if (write.read() == 0) {
-			instructionOut.write(instruction);
-		}
-	}
-}
