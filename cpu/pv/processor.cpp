@@ -7,6 +7,7 @@
 #include <map>
 #include <fstream>
 #include <stdlib.h>
+#include <unistd.h>
 
 #include "multiplex3/multiplex3.cpp"
 #include "multiplex2/multiplex2.cpp"
