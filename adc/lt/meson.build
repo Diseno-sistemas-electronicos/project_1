@@ -13,7 +13,7 @@ adcltlib = shared_library ('adclib',
                          dependencies : deps,
                          install : false)
 
-testexe = executable('adcpv', 'adc_tb.cpp',
+testexe = executable('adclt', 'adc_tb.cpp',
                      include_directories : adc_lt_inc,
                      link_with : adcltlib,
                      dependencies : deps)

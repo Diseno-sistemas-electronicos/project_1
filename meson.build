@@ -12,5 +12,4 @@ subdir('adc')
 subdir('uart')
 subdir('cpu')
 subdir('spi')
-
 subdir('ble')

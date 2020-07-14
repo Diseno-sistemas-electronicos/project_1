@@ -7,10 +7,10 @@ int sc_main (int argc, char* argv[]) {
  
   int data;
   
-  ram mem("MEM",1024);
+  adc adc("ADC",1024);
             
   // Open VCD file
-  sc_trace_file *wf = sc_create_vcd_trace_file("memory");
+  sc_trace_file *wf = sc_create_vcd_trace_file("adc");
   wf->set_time_unit(1, SC_NS);
   
   // Dump the desired signals
@@ -19,44 +19,41 @@ int sc_main (int argc, char* argv[]) {
   sc_start(0,SC_NS);
   cout << "@" << sc_time_stamp()<< endl;
   
-  //printf("Writing in zero time\n");
-  printf("WR: addr = 0x10, data = 0xaced\n");
-  printf("WR: addr = 0x12, data = 0xbeef\n");
-  printf("WR: addr = 0x13, data = 0xdead\n");
-  printf("WR: addr = 0x14, data = 0x1234\n");
-  
-  mem.write(0x10, 0xaced);
+  adc.enableADC();
+
+  adc.write(0x10, 0xaced);
   sc_start(3,SC_NS);
-  data = mem.read(0x10);
-  printf("Rd: addr = 0x10, data = %x\n",data);
+  data = adc.getResult8(0x10);
+  printf("Rd: data = %x\n",data);
     
-  mem.write(0x11, 0xbeef);
-  
+  adc.write(0x11, 0xbeef);
+
   sc_start(10,SC_NS);
-  mem.write(0x12, 0xdead);
-  
+  adc.write(0x12, 0xdead);
+
   sc_start(10,SC_NS);
-  mem.write(0x13, 0x1234);
-  
+  adc.write(0x13, 0x1234);
+
   sc_start(10,SC_NS);
-  
-  data = mem.read(0x10);
+
+  data = adc.getResult8(0x10);
   sc_start(10,SC_NS);
-  printf("Rd: addr = 0x10, data = %x\n",data);
-  
-  data = mem.read(0x11);
+  printf("Rd: data = %x\n",data);
+
+  data = adc.getResult8(0x11);
   sc_start(10,SC_NS);
-  printf("Rd: addr = 0x11, data = %x\n",data);
-  
-   
-  data = mem.read(0x12);
+  printf("Rd: data = %x\n",data);
+
+  adc.setOffset(128);
+
+  data = adc.getResult8(0x12);
   sc_start(10,SC_NS);
-  printf("Rd: addr = 0x12, data = %x\n",data);
+  printf("Rd: data = %x\n",data);
   
 
-  data = mem.read(0x13);
+  data = adc.getResult8(0x13);
   sc_start(10,SC_NS);
-  printf("Rd: addr = 0x13, data = %x\n",data);
+  printf("Rd: data = %x\n",data);
   
   cout << "@" << sc_time_stamp() <<" Terminating simulation\n" << endl;
   sc_close_vcd_trace_file(wf);
