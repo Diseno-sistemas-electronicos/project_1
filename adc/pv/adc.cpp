@@ -7,13 +7,21 @@ SC_MODULE (adc) {
   //-----------Internal variables-------------------
   uint32_t offset = 0;
   uint32_t gain = 0;
+  uint32_t data = 0;
+  bool enable = false;
 
   // Constructor for memory
   SC_HAS_PROCESS(adc);
   adc(sc_module_name adc) : sc_module(adc) {
   }
 
-  void enable(){}
+  void enableADC(){
+    this->enable = true;
+  }
+
+  void disableADC(){
+    this->enable = false;
+  }
 
   bool setOffset(uint32_t newOffset) {
     offset = newOffset;
@@ -26,19 +34,19 @@ SC_MODULE (adc) {
   }
 
   uint8_t getResult8(){
-    return 0;
+    return this->data + this->offset;
   }
 
   uint16_t getResult16() {
-    return 0;
+    return this->data + this->offset;
   }
 
   uint32_t getResult32() {
-    return 0;
+    return this->data + this->offset;
   }
 
   uint64_t getResult64() {
-    return 0;
+    return this->data + this->offset;
   }
 
 }; // End of Module ADC
