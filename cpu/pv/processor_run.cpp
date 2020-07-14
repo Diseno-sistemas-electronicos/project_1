@@ -32,7 +32,7 @@ int sc_main(int argn, char * argc[]){
 	cout << "\nFinished after " << numberCycles - 4 << " cicles. Final state:\n" << endl;	
 
 	cout << "/******* REGISTERS ********/" << endl;
-	p.REGISTERS.print(10);
+	// p.REGISTERS.print(10);
 	cout << "/******* MEMORY ********/" << endl;
 	p.DM.print(10);
 	return 0;

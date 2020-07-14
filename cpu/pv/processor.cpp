@@ -7,6 +7,7 @@
 #include <map>
 #include <fstream>
 #include <stdlib.h>
+#include <unistd.h>
 
 #include "multiplex3/multiplex3.cpp"
 #include "multiplex2/multiplex2.cpp"
@@ -80,7 +81,7 @@ SC_MODULE(processor) {
 	program_counter PC{"PC"};					// Program counter
 	ula ULA{"ULA"};							// ULA
 	control CONTROL{"CONTROL"};					// Control
-	register_base<sc_int<32>,32> REGISTERS{"REGISTERS"};		// Registers
+	// register_base<sc_int<32>,32> REGISTERS{"REGISTERS"};		// Registers
 	multiplex3 MULTIRB{"MULTIRB"};
 	multiplex2 MULTIDM{"MULTIDM"};
 	pipeline_reg PIPELINESE{"PIPELINESE"}; 				// Pipeline register search-exec 
@@ -270,16 +271,16 @@ SC_MODULE(processor) {
 
 		//-> Register base
 		// In
-		REGISTERS.clock(clock);
-		REGISTERS.enable(sigEnableRB);
-		REGISTERS.write(sigWriteRB);
-		REGISTERS.addressSource1(sigOf1Pipe);
-		REGISTERS.addressSource2(sigOf2Pipe);
-		REGISTERS.addressDest(sigOpdPipe);
-		REGISTERS.dataToWrite(sigSaidaMultiRBW); 
+		// REGISTERS.clock(clock);
+		// REGISTERS.enable(sigEnableRB);
+		// REGISTERS.write(sigWriteRB);
+		// REGISTERS.addressSource1(sigOf1Pipe);
+		// REGISTERS.addressSource2(sigOf2Pipe);
+		// REGISTERS.addressDest(sigOpdPipe);
+		// REGISTERS.dataToWrite(sigSaidaMultiRBW);
 		// Out	
-		REGISTERS.dataSource1(sigAULA);
-		REGISTERS.dataSource2(sigBULA);
+		// REGISTERS.dataSource1(sigAULA);
+		// REGISTERS.dataSource2(sigBULA);
 
 		//-> Multiplex for write data on register base
 		// In
