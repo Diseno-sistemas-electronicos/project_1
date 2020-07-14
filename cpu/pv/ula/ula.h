@@ -5,7 +5,7 @@
 
 SC_MODULE(ula) {
 
-	//-- Sinais --//
+	//-- signals --//
 	sc_out<sc_int<32> > saida;
 	sc_out<bool> N;
 	sc_out<bool> Z;
@@ -15,7 +15,56 @@ SC_MODULE(ula) {
 	sc_in<bool> reset; // reset Z e N
 
 	//-- Methods --//
-	void compute();
+	void compute(){
+		int ar = a.read();
+		int br = b.read();
+		int op = operacao.read();
+		
+		if (reset.read() == 1) {
+			N.write(0);
+			Z.write(0);
+		}	
+
+		switch(op){
+			case 6:
+				saida.write(ar + br);
+				break;
+			case 7:
+				saida.write(ar - br);
+				break;
+			case 5:
+				if(ar == br) {
+					saida.write(1);
+					Z.write(1);
+					N.write(0);
+				}
+				else if(ar < br) { 
+					saida.write(0);
+					Z.write(0);
+					N.write(1);
+				} else { 
+					saida.write(2);
+					Z.write(0);
+					N.write(0);
+				}
+				break;
+			case 1:
+				saida.write(ar & br);
+				break;
+			case 2:
+				saida.write(ar | br);
+				break;
+			case 3:
+				saida.write(ar ^ br);
+				break;
+			case 4:
+				saida.write(~ar);
+				break;
+			default:
+				saida.write(0);
+				break;
+		}
+}
 
 	SC_HAS_PROCESS(ula);
 	
@@ -26,57 +75,5 @@ SC_MODULE(ula) {
 	};
 
 };
-
-
-void ula::compute(){
-	int ar = a.read();
-	int br = b.read();
-	int op = operacao.read();
-	
-	if (reset.read() == 1) {
-		N.write(0);
-		Z.write(0);
-	}	
-
-	switch(op){
-		case 6:
-			saida.write(ar + br);
-			break;
-		case 7:
-			saida.write(ar - br);
-			break;
-		case 5:
-			if(ar == br) {
-				saida.write(1);
-				Z.write(1);
-				N.write(0);
-			}
-			else if(ar < br) { 
-				saida.write(0);
-				Z.write(0);
-				N.write(1);
-			} else { 
-				saida.write(2);
-				Z.write(0);
-				N.write(0);
-			}
-			break;
-		case 1:
-			saida.write(ar & br);
-			break;
-		case 2:
-			saida.write(ar | br);
-			break;
-		case 3:
-			saida.write(ar ^ br);
-			break;
-		case 4:
-			saida.write(~ar);
-			break;
-		default:
-			saida.write(0);
-			break;
-	}
-}
 
 #endif
