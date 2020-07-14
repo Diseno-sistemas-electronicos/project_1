@@ -81,7 +81,7 @@ SC_MODULE(processor) {
 	program_counter PC{"PC"};					// Program counter
 	ula ULA{"ULA"};							// ULA
 	control CONTROL{"CONTROL"};					// Control
-	register_base<sc_int<32>,32> REGISTERS{"REGISTERS"};		// Registers
+	// register_base<sc_int<32>,32> REGISTERS{"REGISTERS"};		// Registers
 	multiplex3 MULTIRB{"MULTIRB"};
 	multiplex2 MULTIDM{"MULTIDM"};
 	pipeline_reg PIPELINESE{"PIPELINESE"}; 				// Pipeline register search-exec 
@@ -271,16 +271,16 @@ SC_MODULE(processor) {
 
 		//-> Register base
 		// In
-		REGISTERS.clock(clock);
-		REGISTERS.enable(sigEnableRB);
-		REGISTERS.write(sigWriteRB);
-		REGISTERS.addressSource1(sigOf1Pipe);
-		REGISTERS.addressSource2(sigOf2Pipe);
-		REGISTERS.addressDest(sigOpdPipe);
-		REGISTERS.dataToWrite(sigSaidaMultiRBW); 
+		// REGISTERS.clock(clock);
+		// REGISTERS.enable(sigEnableRB);
+		// REGISTERS.write(sigWriteRB);
+		// REGISTERS.addressSource1(sigOf1Pipe);
+		// REGISTERS.addressSource2(sigOf2Pipe);
+		// REGISTERS.addressDest(sigOpdPipe);
+		// REGISTERS.dataToWrite(sigSaidaMultiRBW);
 		// Out	
-		REGISTERS.dataSource1(sigAULA);
-		REGISTERS.dataSource2(sigBULA);
+		// REGISTERS.dataSource1(sigAULA);
+		// REGISTERS.dataSource2(sigBULA);
 
 		//-> Multiplex for write data on register base
 		// In
