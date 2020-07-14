@@ -1,72 +1,51 @@
-#include "systemc.h"
+#include <systemc.h>
+
 #include "program_counter.cpp"
+#include "stim.h"
 
-int sc_main(int argc, char * argv[]) {
-
-	sc_signal<bool> clock;
-	sc_signal<bool> enable;
-	sc_signal<bool> reset;
-	sc_signal<sc_uint<8> > counter_out;
-
-	// Instance
-	program_counter pc("PC");
-	pc.clock(clock);
-	pc.enable(enable);
-	pc.reset(reset);
-	pc.counter_out(counter_out);
-
-	// Open VCD file
-	sc_trace_file *wf = sc_create_vcd_trace_file("pc");
-	sc_trace(wf, clock, "clock");
-	sc_trace(wf, reset, "reset");
-	sc_trace(wf, enable, "enable");
-	sc_trace(wf, counter_out, "counter_out");
-
-	reset = 0; 	// Not reset now
-	enable = 0; 	// Not counting now
+int sc_main(int argc, char* argv[])
+{
+		//-- Signals --//
+		//-- In --//
+		sc_clock clock("clock",10,SC_NS,0.5);	// Create a clock signal
+	
+		sc_signal<bool> reset;
+		sc_signal<bool> enable;
+		sc_signal<bool> load;
+		sc_signal<sc_uint<9> > counter_out;
+		sc_signal<sc_uint<9> > counter_in;
+	
+		sc_trace_file *fp;					// Create VCD file
+		fp=sc_create_vcd_trace_file("wave");// open(fp), create wave.vcd file
+		fp->set_time_unit(1, SC_NS);		// set tracing resolution to ns
 		
-	// Mostrar que mantém 0
-	for (int i = 0; i < 5; ++i) {
-		clock = 0;
-		sc_start();
-		clock = 1;
-		sc_start();
-	}
-
-	// Reset!
-	reset = 1;
-	cout << sc_time_stamp() << "Asserting reset\n" << endl;
-	for (int i = 0; i < 10; ++i) {
-		clock = 0;
-		sc_start();
-		clock = 1;
-		sc_start();
-	}
-
-	// Undoing Reset!
-	reset = 0;
-	cout << sc_time_stamp() << "De-asserting reset\n" << endl;
-	for (int i = 0; i < 5; ++i) {
-		clock = 0;
-		sc_start();
-		clock = 1;
-		sc_start();
-	}
-
-	// Enable!
-	enable = 1;	
-	cout << sc_time_stamp() << "Assert enable!\n" << endl;
-	for (int i = 0; i < 256; ++i) {
-		clock = 0;
-		sc_start();
-		clock = 1;
-		sc_start();	
-	}
-
-	cout << sc_time_stamp() << "De-assert enable!\n" << endl;
-	enable = 0;
+		program_counter DUT("program_counter");
 		
-	cout << sc_time_stamp() << "End simulation!\n" << endl;
-	sc_close_vcd_trace_file(wf);
-	return 0;
+		DUT.clock(clock);
+		DUT.reset(reset);
+		DUT.enable(enable);
+		DUT.load(load);
+		DUT.counter_out(counter_out);
+		DUT.counter_in(counter_in);
+		
+		stim STIM("stimulus");				// Instantiate stimulus generator
+		STIM.clock(clock);
+		STIM.reset(reset);
+		STIM.enable(enable);
+		STIM.load(load);
+		STIM.counter_in(counter_in);
+		
+		sc_trace(fp,clock,"clock");	
+		sc_trace(fp,reset,"reset");
+		sc_trace(fp,enable,"enable");
+		sc_trace(fp,load,"load");
+		sc_trace(fp,counter_out,"counter_out");
+		sc_trace(fp,counter_in,"counter_in");
+		
+		sc_start(100, SC_NS);			   	// Run simulation
+
+		sc_close_vcd_trace_file(fp);		// close(fp)
+
+		return 0;							// Return OK, no errors.		
+
 }
