@@ -16,7 +16,16 @@ SC_MODULE(multiplex3){
 	/* Method that selects the right input
 	 * according to the selector.
 	 * **/
-	void select();
+	void select(){
+	if (seletor.read() == 0) {
+		saida.write(saidaULA.read());
+	} else if (seletor.read() == 1) {
+		saida.write(dataDM.read());
+	} else if (seletor.read() == 2) {
+		int t = immediateData.read();
+		saida.write(t);
+	}
+}
 
 	/** 
 	 * Constructor
@@ -28,14 +37,3 @@ SC_MODULE(multiplex3){
 	}
 
 };
-
-void multiplex3::select() {
-	if (seletor.read() == 0) {
-		saida.write(saidaULA.read());
-	} else if (seletor.read() == 1) {
-		saida.write(dataDM.read());
-	} else if (seletor.read() == 2) {
-		int t = immediateData.read();
-		saida.write(t);
-	}
-}
